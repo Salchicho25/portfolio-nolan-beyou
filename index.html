@@ -915,6 +915,61 @@ main{counter-reset:sec}
 footer{border-top:1px solid var(--ink)}
 .facts-id dt{color:var(--ink-2)}
 
+/* avion: specification strip, prototype photos, mass budget */
+.brief{margin:0 0 72px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 24px}
+.brief div{border-top:1px solid var(--ink);padding-top:12px;min-width:0}
+.brief dt{font:400 11.5px var(--f-mono);color:var(--ink-2)}
+.brief dd{margin:6px 0 0;font:600 clamp(1.35rem,2.2vw,1.9rem)/1.05 var(--f-display);letter-spacing:-.035em}
+.brief small{display:block;margin-top:6px;font-size:13px;color:var(--ink-2)}
+#drone .d-title{margin-top:150px;margin-bottom:44px}
+#drone .dossiers .d-title{margin-top:0}
+.proto{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);grid-template-rows:auto auto;gap:28px}
+.proto figure{margin:0;min-width:0}
+.proto img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;background:var(--paper-2)}
+.proto .p-main{grid-row:1 / span 2}
+.proto .p-main img{aspect-ratio:auto;height:calc(100% - 30px)}
+.proto figcaption{margin-top:12px;font:400 12px var(--f-mono);color:var(--ink-2)}
+.fab{margin:44px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px 24px}
+.fab div{border-top:1px solid var(--line);padding-top:12px;min-width:0}
+.fab dt{font:400 11.5px var(--f-mono);color:var(--ink-2)}
+.fab dd{margin:4px 0 0;font-size:15px}
+.mass-bar{display:flex;height:76px;border:1px solid var(--ink);background:var(--paper)}
+.ms{all:unset;box-sizing:border-box;display:block;height:100%;flex:0 0 var(--w);border-right:1px solid var(--paper);cursor:pointer;transition:opacity .25s,flex-basis .9s cubic-bezier(.3,.7,.2,1)}
+.ms:focus-visible{outline:2px solid var(--accent);outline-offset:2px;position:relative;z-index:1}
+.ms-s{background:var(--ink)}
+.ms-p{background:var(--ink-2)}
+.ms-e{background:var(--hatch)}
+.ms-rest{background:repeating-linear-gradient(135deg,transparent 0 6px,var(--line) 6px 7px);cursor:default;border-right:none}
+.ms:hover{background:var(--accent)}
+.mass-bar[data-focus] .ms:not(.ms-rest){opacity:.28}
+.mass-bar[data-focus="s"] .ms-s,.mass-bar[data-focus="p"] .ms-p,.mass-bar[data-focus="e"] .ms-e{opacity:1}
+.mass-bar.armed .ms{flex-basis:0}
+.mass-bar.armed.on .ms{flex-basis:var(--w)}
+.mass-scale{display:flex;justify-content:space-between;margin-top:8px;font:400 11px var(--f-mono);color:var(--ink-2)}
+.mass-foot{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px 48px;align-items:start}
+.mass-legend{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.mass-legend li{border-top:1px solid var(--line)}
+.mass-legend button,.mass-legend span{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:10px;padding:11px 0;font-size:14.5px;cursor:pointer}
+.mass-legend span{cursor:default;color:var(--ink-2)}
+.mass-legend button:hover,.mass-legend button:focus-visible{color:var(--accent)}
+.mass-legend i{display:inline-block;width:14px;height:14px;border:1px solid var(--ink)}
+.mass-legend b{margin-left:auto;font:500 13px var(--f-mono)}
+.mass-read{margin:0;font-size:15px;line-height:1.5;color:var(--ink-2);min-height:4.5em}
+.mass-read b{color:var(--ink)}
+.d-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.dp-kv.chain div{border-top-width:1px}
+.dp-read.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.brief,.fab{grid-template-columns:repeat(3,minmax(0,1fr))}.mass-foot{grid-template-columns:minmax(0,1fr)}.dp-read.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){
+  .brief,.fab{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .brief{margin-bottom:48px}
+  #drone .d-title{margin-top:96px;margin-bottom:32px}
+  .proto{grid-template-columns:minmax(0,1fr);gap:24px}
+  .proto .p-main{grid-row:auto}
+  .proto .p-main img{height:auto;aspect-ratio:4/3}
+  .mass-bar{height:56px}
+}
+
 /* robot: printed parts viewer and laser board */
 .rb-poster{object-fit:contain;padding:14%;box-sizing:border-box}
 .rb-layers{bottom:64px}
@@ -1056,9 +1111,17 @@ footer{margin-top:40px}
       <span class="pl">UAV 2026</span>
       <div>
         <h2 id="h-drone">Drone à voilure fixe</h2>
-        <p class="lede"><b>Dassault UAV Challenge 2026, AIR UTC.</b> Un avion autonome de 2 kg, largué en vol par un drone.</p>
+        <p class="lede"><b>AIR UTC, 2026.</b> Un avion autonome de moins de 2 kg, largué en vol par un drone, préparé pour le Dassault UAV Challenge.</p>
       </div>
     </header>
+
+    <dl class="brief" aria-label="Cahier des charges">
+      <div><dt>Budget</dt><dd>500 €</dd><small>composants compris</small></div>
+      <div><dt>Masse</dt><dd>&lt; 2 kg</dd><small>tout équipé</small></div>
+      <div><dt>Départ</dt><dd>En vol</dd><small>largué par le drone porteur</small></div>
+      <div><dt>Pilotage</dt><dd>Programmé</dd><small>ArduPlane, MAVLink</small></div>
+      <div><dt>Mission</dt><dd>Détection</dd><small>caméra et traitement d’image</small></div>
+    </dl>
 
     <div class="cad" id="cad">
       <div class="cad-bar">
@@ -1108,6 +1171,30 @@ footer{margin-top:40px}
       <figure><img src="p26/detail-aile.jpg" alt="Aile et aileron sur leurs tubes de longeron en carbone" loading="lazy" width="1200" height="750"><figcaption>Aile sur longerons carbone</figcaption></figure>
     </div>
 
+    <h3 class="d-title">Le prototype</h3>
+    <div class="proto">
+      <figure class="p-main"><img src="p26/photo-ensemble.jpg" alt="L’avion assemblé sur son support au local AIR UTC : aile entoilée, fuselage et empennage en T" loading="lazy" width="1280" height="888"><figcaption>Assemblage au local AIR UTC, juin 2026</figcaption></figure>
+      <figure><img src="p26/photo-aile.jpg" alt="Aile entoilée, ailerons et empennage en T vus de trois quarts" loading="lazy" width="1200" height="1120"><figcaption>Aile entoilée et empennage en T</figcaption></figure>
+      <figure><img src="p26/photo-nez.jpg" alt="Nez de l’avion et fuselage entoilé sur le support" loading="lazy" width="1352" height="1291"><figcaption>Nez et fuselage</figcaption></figure>
+    </div>
+    <dl class="fab" aria-label="Fabrication">
+      <div><dt>Nervures du fuselage</dt><dd>balsa découpé au laser</dd></div>
+      <div><dt>Nervures d’aile</dt><dd>PLA-LW imprimé en 3D</dd></div>
+      <div><dt>Entoilage</dt><dd>film thermorétractable</dd></div>
+      <div><dt>Longerons</dt><dd>tubes carbone</dd></div>
+      <div><dt>Batterie</dt><dd>logement accessible</dd></div>
+    </dl>
+
+    <h3 class="d-title">Bilan de masse</h3>
+    <div class="mass" id="mass">
+      <div class="mass-bar" id="massBar" role="group" aria-label="Répartition de la masse sur les 2 000 g visés"></div>
+      <div class="mass-scale" aria-hidden="true"><span>0</span><span>500 g</span><span>1 000 g</span><span>1 500 g</span><span>2 000 g</span></div>
+      <div class="mass-foot">
+        <ul class="mass-legend" id="massLegend"></ul>
+        <p class="mass-read" id="massRead" aria-live="polite"></p>
+      </div>
+    </div>
+
     <div class="dossiers">
       <h3 class="d-title">Dossiers techniques</h3>
             <div class="d-grid">
@@ -1116,6 +1203,8 @@ footer{margin-top:40px}
         <a class="dcard" href="#avion-structure"><span class="dn">03</span><b>Structure et simulation</b><span class="dv">sécurité <em>×15</em></span><span class="go">Ouvrir</span></a>
         <a class="dcard" href="#avion-centrage"><span class="dn">04</span><b>Centrage et stabilité</b><span class="dv">marge <em>19,7 %</em></span><span class="go">Ouvrir</span></a>
         <a class="dcard" href="#avion-mission"><span class="dn">05</span><b>Mission et électronique</b><span class="dv">largage <em>en vol</em></span><span class="go">Ouvrir</span></a>
+        <a class="dcard" href="#avion-propulsion"><span class="dn">06</span><b>Propulsion et autonomie</b><span class="dv">autonomie <em>25,6 min</em></span><span class="go">Ouvrir</span></a>
+        <a class="dcard" href="#avion-empennage"><span class="dn">07</span><b>Empennage en T</b><span class="dv">stabilisateur <em>725 cm²</em></span><span class="go">Ouvrir</span></a>
       </div>
     </div>
 
@@ -1123,7 +1212,8 @@ footer{margin-top:40px}
       <dl class="facts-id">
         <div><dt>Électronique</dt><dd>Pixhawk sous ArduPlane, Raspberry Pi 5, GPS RTK</dd></div>
         <div><dt>Mission</dt><dd>Largage, démarrage moteur en vol, navigation autonome</dd></div>
-        <div><dt>Mon travail</dt><dd>Conception, matériaux, électronique et scripts ArduPilot</dd></div>
+        <div><dt>Mon rôle</dt><dd>Conception mécanique, simulation numérique et fabrication</dd></div>
+        <div><dt>Équipe</dt><dd>5 étudiants, projet AIR UTC encadré par Emmanuel Lefrançois</dd></div>
       </dl>
       <div class="code">
           <div class="t">altitude.lua, script embarqué sur le Pixhawk</div>
@@ -1400,7 +1490,7 @@ footer{margin-top:40px}
 </main>
 <!-- ============ AVION: DOSSIERS (pages opened by #hash) ============ -->
 <div class="dpage" id="avion-aero" role="dialog" aria-modal="true" aria-labelledby="t-aero" hidden>
-  <div class="dp-bar"><a class="dp-back" href="#drone">Retour au drone</a><span class="dp-crumb">P26 voilure fixe / Dossier 01</span><nav class="dp-nav"><a href="#avion-mission" aria-label="Dossier précédent">Préc.</a><a href="#avion-vol" aria-label="Dossier suivant">Suiv.</a></nav></div>
+  <div class="dp-bar"><a class="dp-back" href="#drone">Retour au drone</a><span class="dp-crumb">P26 voilure fixe / Dossier 01</span><nav class="dp-nav"><a href="#avion-empennage" aria-label="Dossier précédent">Préc.</a><a href="#avion-vol" aria-label="Dossier suivant">Suiv.</a></nav></div>
   <div class="dp-body wrap">
     <h2 id="t-aero">Aérodynamique</h2>
     <p class="lede">Profil NACA 4412 sur une aile rectangulaire de 300 mm de corde, allongement 5, facteur d’Oswald 0,80. Faites varier l’incidence : C<sub>L</sub> vient du tableau d’incidence du rapport, traînée, finesse et puissance de sa polaire, à 11,1 m/s.</p>
@@ -1499,7 +1589,7 @@ footer{margin-top:40px}
 </div>
 
 <div class="dpage" id="avion-mission" role="dialog" aria-modal="true" aria-labelledby="t-mis" hidden>
-  <div class="dp-bar"><a class="dp-back" href="#drone">Retour au drone</a><span class="dp-crumb">P26 voilure fixe / Dossier 05</span><nav class="dp-nav"><a href="#avion-centrage">Préc.</a><a href="#avion-aero">Suiv.</a></nav></div>
+  <div class="dp-bar"><a class="dp-back" href="#drone">Retour au drone</a><span class="dp-crumb">P26 voilure fixe / Dossier 05</span><nav class="dp-nav"><a href="#avion-centrage">Préc.</a><a href="#avion-propulsion">Suiv.</a></nav></div>
   <div class="dp-body wrap">
     <h2 id="t-mis">Mission et électronique</h2>
     <p class="lede">Cahier des charges du Dassault UAV Challenge : budget de 500 €, moins de 2 kg tout compris, pilotage programmé, et un avion largué en vol par le drone porteur de l’équipe.</p>
@@ -1536,6 +1626,47 @@ footer{margin-top:40px}
     </div>
   </div>
 </div>
+
+<div class="dpage" id="avion-propulsion" role="dialog" aria-modal="true" aria-labelledby="t-prop" hidden>
+  <div class="dp-bar"><a class="dp-back" href="#drone">Retour au drone</a><span class="dp-crumb">P26 voilure fixe / Dossier 06</span><nav class="dp-nav"><a href="#avion-mission">Préc.</a><a href="#avion-empennage">Suiv.</a></nav></div>
+  <div class="dp-body wrap">
+    <h2 id="t-prop">Propulsion et autonomie</h2>
+    <p class="lede">Moteur brushless de 1 100 KV, hélice 10 × 5 et LiPo 3S de 3 600 mAh. Choisissez la puissance moyenne consommée en vol : l’autonomie et la distance suivent.</p>
+    <dl class="dp-kv chain">
+      <div><dt>Batterie</dt><dd>LiPo 3S 3 600 mAh, 39,96 Wh, 260 g</dd></div>
+      <div><dt>Contrôleur</dt><dd>ESC 30 A BLHeli, DShot, 30 g</dd></div>
+      <div><dt>Moteur</dt><dd>brushless 1 100 KV, 85 g</dd></div>
+      <div><dt>Hélice</dt><dd>10 × 5 pouces, 25 g</dd></div>
+    </dl>
+    <div class="dp-ctrl wide"><label for="pmoy">Puissance moyenne <output id="pOut" class="num">75 W</output></label><input id="pmoy" type="range" min="15" max="120" step="1" value="75"></div>
+    <div class="dp-split">
+      <figure class="dp-fig"><svg id="chAuto" viewBox="0 0 640 320" role="img" aria-label="Autonomie en minutes en fonction de la puissance moyenne consommée"></svg><figcaption>Autonomie = énergie utile / puissance, avec 80 % de la batterie utilisable (31,97 Wh).</figcaption></figure>
+      <div class="dp-read" id="propRead"></div>
+    </div>
+    <div class="dp-note"><b>Lecture.</b> À 22 W, la seule puissance de croisière, la batterie tiendrait 87 min. Le rapport retient 75 W en moyenne pour couvrir montées, manœuvres et électronique : <b>25,6 min</b> et <b>17 km</b> à 40 km/h. À vide, le moteur tourne à 1 100 × 11,1 V, soit 12 210 tr/min.</div>
+  </div>
+</div>
+
+<div class="dpage" id="avion-empennage" role="dialog" aria-modal="true" aria-labelledby="t-emp" hidden>
+  <div class="dp-bar"><a class="dp-back" href="#drone">Retour au drone</a><span class="dp-crumb">P26 voilure fixe / Dossier 07</span><nav class="dp-nav"><a href="#avion-propulsion">Préc.</a><a href="#avion-aero">Suiv.</a></nav></div>
+  <div class="dp-body wrap">
+    <h2 id="t-emp">Empennage en T</h2>
+    <p class="lede">Stabilisateur de 725 cm² et dérive de 243 cm², dimensionnés par la méthode des volumes d’empennage. Faites varier le bras de levier entre le centre de gravité et l’empennage.</p>
+    <figure class="dp-fig">
+      <svg id="empSvg" viewBox="0 0 900 260" role="img" aria-label="Vue de côté de l’avion avec le bras de levier entre le centre de gravité et l’empennage en T"></svg>
+      <div class="dp-ctrl wide"><label for="lh">Bras de levier <output id="lhOut" class="num">650 mm</output></label><input id="lh" type="range" min="350" max="1000" step="5" value="650"></div>
+    </figure>
+    <div class="dp-read four" id="empRead"></div>
+    <dl class="dp-kv">
+      <div><dt>Stabilisateur</dt><dd>0,0725 m²</dd></div>
+      <div><dt>Dérive</dt><dd>0,0243 m²</dd></div>
+      <div><dt>Commandes</dt><dd>2 servos : profondeur et direction</dd></div>
+      <div><dt>Structure</dt><dd>plaques de 5 mm, nervures croisées</dd></div>
+    </dl>
+    <div class="dp-note"><b>Lecture.</b> V<sub>h</sub> = S<sub>h</sub> · l / (S · c̄) et V<sub>v</sub> = S<sub>v</sub> · l / (S · b), avec S = 0,45 m², c̄ = 0,30 m et b = 1,30 m. Il faut environ 650 mm de bras de levier pour atteindre V<sub>h</sub> = 0,35. En T, le plan horizontal sort du sillage de l’aile, ce qui rend la profondeur plus efficace.</div>
+  </div>
+</div>
+
 
 <footer><div class="wrap">Nolan Beyou. Figures dessinées à partir de mes projets : CAO du drone, code balltraj, scripts OpenSim et bots.</div></footer>
 
@@ -1872,6 +2003,50 @@ function selectAddr(){ try{ const r=document.createRange(); r.selectNodeContents
       ol.querySelectorAll('button').forEach((b,i)=>{ b.addEventListener('click',()=>show(i)); b.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'||e.key==='ArrowRight'){ e.preventDefault(); const n=(i+1)%steps.length; show(n); ol.querySelectorAll('button')[n].focus(); } if(e.key==='ArrowUp'||e.key==='ArrowLeft'){ e.preventDefault(); const n=(i+steps.length-1)%steps.length; show(n); ol.querySelectorAll('button')[n].focus(); } }); });
       show(0);
     },
+    'avion-propulsion'(){
+      const E=31.97, U=11.1, CAP=3.6, VC=40;
+      const pts=[]; for(let w=15;w<=120;w+=1) pts.push([w,E/w*60]);
+      const ch=chart(document.getElementById('chAuto'),{x0:15,x1:120,y0:0,y1:130,xt:[20,40,60,80,100,120],yt:[0,30,60,90,120],xl:'puissance moyenne (W)',yl:'autonomie (min)',series:[{pts,cls:'ch-acc'}],marks:[[22,'croisière 22 W',0],[75,'retenue 75 W',16]]});
+      const inp=document.getElementById('pmoy'), out=document.getElementById('pOut'), read=document.getElementById('propRead');
+      function upd(){
+        const w=+inp.value, t=E/w*60, d=t/60*VC, I=w/U;
+        out.textContent=w+' W';
+        read.innerHTML=`<div><span>Autonomie</span><b>${fr(t,1)}<small>min</small></b></div><div><span>Distance à 40 km/h</span><b>${fr(d,1)}<small>km</small></b></div><div><span>Courant moyen</span><b>${fr(I,1)}<small>A</small></b></div><div><span>Décharge</span><b>${fr(I/CAP,1)}<small>C</small></b></div><div class="wide"><span>Marge du contrôleur</span><b class="state ok">${fr(30/I,1)} × le courant moyen pour un ESC de 30 A</b></div>`;
+        ch.set(w,t);
+      }
+      inp.addEventListener('input',upd); upd();
+    },
+    'avion-empennage'(){
+      const S=0.45, C=0.30, B=1.30, SH=0.0725, SV=0.0243;
+      const svg=document.getElementById('empSvg'), inp=document.getElementById('lh'), out=document.getElementById('lhOut'), read=document.getElementById('empRead');
+      const k=0.55, cg=290, y=150;
+      function draw(l){
+        svg.innerHTML='';
+        const tx=cg+l*k, nose=cg-437*k;
+        mk('path',{d:`M${nose},${y} C${nose+20},${y-26} ${nose+70},${y-30} ${cg-40},${y-28} L${tx+20},${y-8} L${tx+20},${y+4} L${cg-40},${y+22} C${nose+70},${y+24} ${nose+20},${y+20} ${nose},${y}Z`,fill:'var(--paper-2)',stroke:'var(--ink)','stroke-width':1.5},svg);
+        mk('rect',{x:cg-84*k,y:y-34,width:300*k,height:7,rx:3,fill:'var(--ink)'},svg);
+        mk('path',{d:`M${tx-30},${y-8} L${tx-6},${y-118} L${tx+22},${y-118} L${tx+22},${y-8}Z`,fill:'var(--paper-2)',stroke:'var(--ink)','stroke-width':1.5},svg);
+        mk('rect',{x:tx-26,y:y-124,width:62,height:6,rx:3,fill:'var(--accent)'},svg);
+        const lab=mk('text',{x:tx+44,y:y-117,fill:'var(--accent)','font-size':12,'font-family':'var(--f-mono)'},svg); lab.textContent='stabilisateur';
+        mk('circle',{cx:cg,cy:y,r:8,fill:'var(--paper)',stroke:'var(--ink)','stroke-width':1.5},svg);
+        mk('path',{d:`M${cg},${y-8} A8,8 0 0 1 ${cg+8},${y} L${cg},${y}Z M${cg},${y+8} A8,8 0 0 1 ${cg-8},${y} L${cg},${y}Z`,fill:'var(--ink)'},svg);
+        const g=mk('text',{x:cg,y:y+44,'text-anchor':'middle',fill:'var(--ink-2)','font-size':12,'font-family':'var(--f-mono)'},svg); g.textContent='centre de gravité';
+        const dy=y+74;
+        mk('line',{x1:cg,y1:y+12,x2:cg,y2:dy+8,stroke:'var(--line)','stroke-width':1},svg);
+        mk('line',{x1:tx,y1:y+8,x2:tx,y2:dy+8,stroke:'var(--line)','stroke-width':1},svg);
+        mk('line',{x1:cg,y1:dy,x2:tx,y2:dy,stroke:'var(--ink)','stroke-width':1.3},svg);
+        mk('path',{d:`M${cg+8},${dy-5} L${cg},${dy} L${cg+8},${dy+5} M${tx-8},${dy-5} L${tx},${dy} L${tx-8},${dy+5}`,fill:'none',stroke:'var(--ink)','stroke-width':1.3},svg);
+        const t=mk('text',{x:(cg+tx)/2,y:dy-8,'text-anchor':'middle',fill:'var(--ink)','font-size':13,'font-weight':600},svg); t.textContent='l = '+l+' mm';
+      }
+      const zone=(v,a,b)=>v<a?'trop faible':v>b?'élevé':'dans la plage usuelle';
+      function upd(){
+        const l=+inp.value, m=l/1000, vh=SH*m/(S*C), vv=SV*m/(S*B);
+        out.textContent=l+' mm'; draw(l);
+        const okh=vh>=0.30&&vh<=0.60, okv=vv>=0.02&&vv<=0.05;
+        read.innerHTML=`<div><span>Volume horizontal V<sub>h</sub></span><b>${fr(vh,2)}</b></div><div><span>Plage usuelle</span><b>0,30 à 0,60</b></div><div><span>Volume vertical V<sub>v</sub></span><b>${fr(vv,3)}</b></div><div><span>Plage usuelle</span><b>0,02 à 0,05</b></div><div class="wide"><span>État</span><b class="state ${okh&&okv?'ok':''}">Profondeur ${zone(vh,0.30,0.60)}, direction ${zone(vv,0.02,0.05)}</b></div>`;
+      }
+      inp.addEventListener('input',upd); upd();
+    },
   };
   const done=new Set();
   let lastScroll=0;
@@ -2167,6 +2342,40 @@ const d=new Date(); $('#today').textContent=String(d.getDate()).padStart(2,'0')+
     views.forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.view==='iso')));
     if(v) v.show(b.dataset.model);
   }));
+})();
+</script>
+<script>/* ---------- avion: mass budget bar ---------- */
+(function(){
+  "use strict";
+  const bar=document.getElementById('massBar'); if(!bar) return;
+  const TARGET=2000;
+  const GROUPS=[
+    {id:'s',name:'Structure',items:[['Fuselage',320],['Ailes : nervures PLA-LW, âme mousse, entoilage',280],['Empennages',120]]},
+    {id:'p',name:'Propulsion',items:[['Batterie LiPo 3S 3 600 mAh',260],['Moteur brushless 1 100 KV',85],['ESC 30 A',30],['Hélice 10 × 5',25]]},
+    {id:'e',name:'Électronique',items:[['Raspberry Pi 5',85],['4 servos',80],['Câblage et divers',71],['Pixhawk 2.4.8',60],['Électro-aimants de largage',40],['GPS RTK',30],['Récepteur RC',30],['Caméra RPi v3',4]]}
+  ];
+  const fr=v=>v.toLocaleString('fr-FR');
+  const pct=v=>(v/TARGET*100).toLocaleString('fr-FR',{maximumFractionDigits:1});
+  const read=document.getElementById('massRead'), legend=document.getElementById('massLegend');
+  let used=0;
+  GROUPS.forEach(g=>{ g.total=g.items.reduce((a,i)=>a+i[1],0); used+=g.total; g.items.forEach(([n,m])=>{
+    const b=document.createElement('button'); b.type='button'; b.className='ms ms-'+g.id; b.style.setProperty('--w',(m/TARGET*100)+'%');
+    b.setAttribute('aria-label',`${n}, ${m} g`); b.dataset.g=g.id;
+    b.addEventListener('pointerenter',()=>show(n,m,g)); b.addEventListener('focus',()=>show(n,m,g));
+    b.addEventListener('pointerleave',idle); b.addEventListener('blur',idle);
+    bar.appendChild(b); }); });
+  const rest=TARGET-used, r=document.createElement('span'); r.className='ms ms-rest'; r.style.setProperty('--w',(rest/TARGET*100)+'%'); r.title=`${rest} g non détaillés`; bar.appendChild(r);
+  legend.innerHTML=GROUPS.map(g=>`<li><button type="button" data-g="${g.id}"><i class="ms-${g.id}"></i>${g.name}<b>${fr(g.total)} g</b></button></li>`).join('')+`<li><span><i class="ms-rest"></i>Non détaillé<b>${fr(rest)} g</b></span></li>`;
+  legend.querySelectorAll('button').forEach(b=>{ const g=GROUPS.find(x=>x.id===b.dataset.g);
+    const on=()=>{ bar.dataset.focus=g.id; read.innerHTML=`<b>${g.name} : ${fr(g.total)} g</b>, soit ${pct(g.total)} % des 2 000 g visés. ${g.items.map(i=>i[0].split(' :')[0]+' '+i[1]+' g').join(', ')}.`; };
+    b.addEventListener('pointerenter',on); b.addEventListener('focus',on); b.addEventListener('pointerleave',idle); b.addEventListener('blur',idle); });
+  function show(n,m,g){ bar.dataset.focus=g.id; read.innerHTML=`<b>${n}</b> : ${fr(m)} g, soit ${pct(m)} % de la masse visée (${g.name.toLowerCase()}).`; }
+  function idle(){ delete bar.dataset.focus; read.innerHTML=`<b>${fr(used)} g détaillés</b> sur les 2 000 g visés. Survolez une pièce pour la lire.`; }
+  idle();
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    bar.classList.add('armed');
+    const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ io.disconnect(); bar.classList.add('on'); } },{threshold:0.4}); io.observe(bar);
+  }
 })();
 </script>
 <script>/* ---------- robot: printed parts viewer, toolpath layers, laser board ---------- */
